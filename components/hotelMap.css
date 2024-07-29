@@ -1,0 +1,27 @@
+.map-container {
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; /* This creates a 4:3 aspect ratio */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .map-container .leaflet-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .map-container {
+      padding-bottom: 56.25%; /* 16:9 aspect ratio for larger screens */
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .map-container {
+      padding-bottom: 50%; /* Even larger for very wide screens */
+    }
+  }

@@ -1,0 +1,909 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/*  */
+.header-menu-container {
+  border-bottom: 2px solid gray; /* Light grey line */
+  padding-bottom: 10px; /* Space between the line and the content */
+  margin-bottom: 10px; /* Space below the line */
+  position: relative;
+}
+/* Styles specific to the DatePicker and calendar-container */
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  width: 600px;
+}
+
+.calendar-container:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
+}
+
+.flexible-options {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.flexible-options button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.flexible-options button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.flexible-options button:active {
+  background-color: #003d7a;
+}
+
+/* Ensure that DatePicker is correctly styled within the responsive layout */
+.react-datepicker {
+  width: 100%;
+  max-width: 250px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.react-datepicker__header {
+  max-width: 260px;
+  width: 100%;
+  background-color: grey;
+  border-bottom: 1px solid #ddd;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  color: white;
+  padding: 8px 11px;
+}
+
+.react-datepicker__day {
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.react-datepicker__day:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  background-color: #007bff;
+  color: white;
+}
+
+.react-datepicker__day--disabled {
+  color: #ccc;
+}
+
+/* Responsive styles updates */
+@media screen and (max-width: 1024px) {
+  .calendar-container {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .calendar-container {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .calendar-container {
+    width: 100%;
+    padding: 12px;
+    box-shadow: none;
+    border-radius: 10px;
+  }
+
+  .flexible-options {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 409px) {
+  .calendar-container {
+    padding: 10px;
+  }
+
+  .flexible-options {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+  body {
+    padding: 10px;
+  }
+
+  .search-menu {
+    margin-left: 200px;
+    border: #333;
+  }
+
+  .title-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-bar h1 {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  nav a {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  nav a:not(:last-child)::after {
+    display: none;
+  }
+
+  .search-menu {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .title-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .options {
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .user-menu-button {
+    padding: 5px;
+  }
+
+  .menu-icon {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  .user-icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title-bar h1 {
+    font-size: 20px;
+  }
+
+  .search-menu {
+    padding: 5px 8px;
+  }
+
+  .search-menu img,
+  .user-menu img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+
+  .user-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .search-menu a {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 409px) {
+  .header-menu-container {
+    border-bottom: 1px solid #ddd; /* Light grey line */
+    max-width: 100%;
+  }
+  .search-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 5px 10px;
+  }
+
+  .search-menu button {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .search-menu button::after {
+    display: none; /* Remove the dividing line */
+  }
+
+  .user-menu {
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+
+  .user-menu img {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 5px;
+  }
+
+  .user-menu-button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around; /* Ensure buttons are spaced properly */
+}
+
+.navbar-item {
+  position: relative; /* Make each navbar-item container relative */
+}
+
+.guest-selection {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: seashell;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  width: 350px; /* Adjust as needed */
+  z-index: 1000;
+  display: block; /* Ensure it's displayed */
+}
+
+.guest-item {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+}
+
+.counter button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.counter span {
+  margin: 0 10px;
+}
+
+.navbar-item {
+  /* Your existing styles */
+  /* border: 2px solid transparent; */
+  /* border-radius: 15px; */
+  transition: all 0.3s ease;
+}
+
+.navbar-item.active {
+  color: #008489;
+}
+
+.navbar-item span {
+  color: slategray;
+}
+
+.navbar-item.item-selected span {
+  color: #008489;
+}
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .guest-selection {
+    padding: 15px;
+  }
+
+  .guest-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+
+  .guest-item span {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .counter {
+    justify-content: flex-start;
+  }
+}
+@media (min-width: 769px) {
+  .guest-selection {
+    left: 55%; /* Move to the right of the button */
+    top: 90px; /* Align top with the button */
+    margin-left: -10px; /* Space between button and dropdown */
+  }
+}
+
+@media (max-width: 480px) {
+  .guest-selection {
+    padding: 10px;
+  }
+
+  .guest-item {
+    padding: 8px 0;
+  }
+
+  .guest-item span {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .counter button {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+  }
+
+  .counter span {
+    font-size: 14px;
+    width: 25px;
+  }
+}
+
+/* footer */
+
+/* making the navbar buttons functional*/
+
+.destination-search {
+  display: none; /* Initially hide the second navbar */
+}
+
+.destination-search.show {
+  display: block; /* Show the second navbar when the 'show' class is applied */
+}
+
+.navbar {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  border: 1px solid pink;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.5);
+}
+.navbar-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-right: 1px solid #ddd;
+  flex-grow: 1;
+  text-align: center;
+}
+.navbar-item:last-child {
+  border-right: none;
+}
+.search-button {
+  background-color: #ff385c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block;
+}
+.search-container {
+  display: none;
+  border: 1px solid #ccc;
+  border-radius: 24px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.search-input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+}
+.region-grid {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  justify-content: space-around;
+}
+.region-item {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.region-item img {
+  width: 100%; /* Ensure images are responsive within their containers */
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%; /* Example border radius for rounded images */
+}
+.region-item:hover {
+  background-color: #f0f0f0;
+}
+.region-item span {
+  margin-top: 10px; /* Space between image and text */
+  flex: 1;
+  width: 100%;
+}
+.region-grid.show {
+  display: flex;
+  flex-direction: row;
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+  gap: 10px;
+  justify-content: space-around;
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    border-radius: 20px;
+  }
+  .navbar-item {
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+  .navbar-item:last-child {
+    border-bottom: none;
+  }
+}
+@media (max-width: 768px) {
+  .region-item {
+    width: calc(50% - 20px); /* Adjust for medium-sized screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .region-item {
+    width: 100%; /* Adjust for smaller screens */
+  }
+}
+
+/* making the Anyweek button functional*/
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  margin-left: 20px;
+  font-size: 14px;
+  position: relative;
+  width: 100px;
+}
+nav a:hover {
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 100%;
+}
+nav a:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 1px;
+  background-color: #ddd;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.user-menu-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.user-menu-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.menu-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.search-menu {
+  display: flex;
+  align-items: center;
+  margin-left: 400px;
+  padding: 8px 12px;
+  border: 1px solid deepskyblue;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
+}
+
+.search-menu button {
+  margin-right: 20px;
+  padding: 10px 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  position: relative;
+}
+
+.search-menu button::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 0;
+  height: 100%;
+  border-right: 1px solid #ccc;
+}
+
+.search-menu button:last-child::after {
+  display: none;
+}
+
+.user-menu img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+.search-menu img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+/* Responsive styles updates */
+@media screen and (max-width: 1024px) {
+  .calendar-container {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .calendar-container {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .calendar-container {
+    width: 100%;
+    padding: 12px;
+    box-shadow: none;
+    border-radius: 10px;
+  }
+
+  .flexible-options {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 409px) {
+  .calendar-container {
+    padding: 10px;
+  }
+
+  .flexible-options {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+  body {
+    padding: 10px;
+  }
+
+  .search-menu {
+    margin-left: 200px;
+  }
+
+  .title-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-bar h1 {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  nav a {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  nav a:not(:last-child)::after {
+    display: none;
+  }
+
+  .search-menu {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .title-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .options {
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .user-menu-button {
+    padding: 5px;
+  }
+
+  .menu-icon {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  .user-icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title-bar h1 {
+    font-size: 20px;
+  }
+
+  .search-menu {
+    padding: 5px 8px;
+  }
+
+  .search-menu img,
+  .user-menu img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+
+  .user-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .search-menu a {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 409px) {
+  .header-menu-container {
+    border-bottom: 1px solid #ddd; /* Light grey line */
+    max-width: 100%;
+  }
+  .search-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 5px 10px;
+  }
+
+  .search-menu button {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .search-menu button::after {
+    display: none; /* Remove the dividing line */
+  }
+
+  .user-menu {
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+
+  .user-menu img {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 5px;
+  }
+
+  .user-menu-button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+}
+
+/*  */
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .guest-selection {
+    padding: 15px;
+  }
+
+  .guest-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+
+  .guest-item span {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .counter {
+    justify-content: flex-start;
+  }
+}
+@media (min-width: 769px) {
+  .guest-selection {
+    left: 55%; /* Move to the right of the button */
+    top: 90px; /* Align top with the button */
+    margin-left: -10px; /* Space between button and dropdown */
+  }
+}
+
+@media (max-width: 480px) {
+  .guest-selection {
+    padding: 10px;
+  }
+
+  .guest-item {
+    padding: 8px 0;
+  }
+
+  .guest-item span {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .counter button {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+  }
+
+  .counter span {
+    font-size: 14px;
+    width: 25px;
+  }
+}
+
+button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.count {
+  width: 20px;
+  text-align: center;
+  margin: 0 10px;
+  font-size: 18px;
+}

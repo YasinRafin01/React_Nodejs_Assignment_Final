@@ -1,0 +1,100 @@
+.lima-explore-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: aliceblue;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: #717171;
+  margin-bottom: 20px;
+  border-bottom: 1px solid;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.options-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.option-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.option-item {
+  margin-bottom: 20px;
+}
+
+.option-item h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.option-item p {
+  font-size: 14px;
+  color: #717171;
+}
+
+.stay-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.stay-type {
+  font-size: 14px;
+  color: #222;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .options-grid {
+    flex-direction: column;
+  }
+
+  .option-column {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .stay-types {
+    flex-direction: column;
+  }
+
+  .stay-type {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lima-explore-container {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  .option-item h3 {
+    font-size: 14px;
+  }
+
+  .option-item p {
+    font-size: 12px;
+  }
+}

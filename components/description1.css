@@ -1,0 +1,33 @@
+.description {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px 0;
+  font-family: Arial, sans-serif;
+}
+
+.translation-info {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.description-text,
+.additional-text {
+  margin-bottom: 10px;
+}
+
+.show-more-button1 {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+}
