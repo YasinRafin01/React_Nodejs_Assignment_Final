@@ -26,7 +26,7 @@ npm install -g vite
 npm run dev
 
 ## Available Server:
-Backend: http://localhost:3000/(make sure to run this server to show the displayed data from frontend)
+Backend: http://localhost:3000/ (make sure to run this server to show the displayed data from frontend)
 
 Frontend: http://localhost:5173/:slug/room_slug/(e.g.http://localhost:5173/Lima-peru/rooms/)
 
