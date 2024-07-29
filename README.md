@@ -30,6 +30,11 @@ Backend: http://localhost:3000/ (make sure to run this server to show the displa
 
 Frontend: http://localhost:5173/:slug/room_slug/(e.g.http://localhost:5173/Lima-peru/rooms/)
 
+# Images:
+![Screenshot from 2024-07-29 12-33-01](https://github.com/user-attachments/assets/e4d30f8e-8fef-4437-b71e-52e0ae877569)
+![Screenshot from 2024-07-29 12-33-17](https://github.com/user-attachments/assets/541c650c-3695-445d-9ef6-8a596199bde1)
+
+
 # Techonologies Used:
 
 Frontend: React
